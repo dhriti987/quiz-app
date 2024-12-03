@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container my-5">
+        <!-- Quiz Container -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+            {% if question %}
+                <!-- Question Card -->
+                <div class="card shadow-sm" id="quiz-card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center" id="question-text">{{ question.question }}</h3>
+                        <hr>
+                        <!-- Form for Options -->
+                        <form id="quiz-form" action="/question/" method="post">
+                            {% csrf_token %}
+                            <div id="options" class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="answer" id="option-A" value="1"
+                                        required {% if option1 %}checked{% endif %} {% if is_answered %} disabled {% endif %}>
+                                        <label class="form-check-label" for="option-A" id="label-option-A">{{question.option_1}}</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answer" id="option-B" value="2" 
+                                        {% if option2 %} checked {% endif %} {% if is_answered %}disabled{% endif %}>
+                                            <label class="form-check-label" for="option-B" id="label-option-B">{{question.option_2}}</label>
+                                        </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answer" id="option-C" value="3" 
+                                        {% if option3 %} checked {% endif %} {% if is_answered %}disabled{% endif %}>
+                                            <label class="form-check-label" for="option-C" id="label-option-C">{{question.option_3}}</label>
+                                        </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answer" id="option-D" value="4" 
+                                        {% if option4 %} checked {% endif %} {% if is_answered %}disabled{% endif %}>
+                                            <label class="form-check-label" for="option-D" id="label-option-D">{{question.option_4}}</label>
+                                        </div>
+                                            </div>
+                                            <!-- Submit Button -->
+                                            <div class="d-flex justify-content-center mt-3">
+                                                <input class="btn btn-success" type="submit" value="Submit" {% if is_answered %}disabled{% endif %}>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                {% if is_answered %}
+                                    <!-- Feedback Section -->
+                                    <div id="feedback" class="mt-4">
+                                        <p class="lead text-center" id="feedback-text">
+                                            {% if is_correct %}
+                                                <div class="alert alert-success" role="alert">Your Answer is Correct!</div>
+                                            {% else %}
+                                                <div class="alert alert-danger" role="alert">Your answer is Wrong!</div>
+                                            {% endif %}
+                                        </p>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="/question/"><button class="btn btn-primary mx-2">Answer More</button></a>
+                                            <a href="/"><button class="btn btn-secondary mx-2">End Quiz</button></a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% else %}
+
+                            <div id="feedback" class="mt-4">
+                                        <p class="lead text-center" id="feedback-text">
+                                            
+                                                <div class="alert alert-danger" role="alert">No More Question Available Right Now!</div>
+                                        </p>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="/"><button class="btn btn-secondary mx-2">End Quiz</button></a>
+                                        </div>
+                                    </div>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block logout %}
+<a href="/logout/"><button class="btn btn-outline-danger" type="submit">Logout</button></a>
+{% endblock %}
+
+{% block body %}
+
+<div class="container my-5">
+    <!-- Dashboard Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- User Performance Section -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Your Performance</h3>
+                    <hr>
+                    <p class="lead">Total Questions Attempted: <span id="total-questions">{{ total }}</span></p>
+                    <p class="lead">Number of Correct Answers: <span id="correct-answers"> {{correct}} </span></p>
+                    <p class="lead">Overall Score: <span id="score">{{overall}}%</span></p>
+                </div>
+            </div>
+
+            <!-- Take Quiz Button -->
+            <div class="d-flex justify-content-center mt-4">
+                <a href="/question/"><button class="btn btn-primary btn-lg">Take Quiz</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
