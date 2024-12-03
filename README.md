@@ -44,7 +44,7 @@ This is a simple **Quiz App** built with **Python Django** and **Bootstrap**. Th
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/quiz-app.git
+   git clone https://github.com/dhriti987/quiz-app.git
    cd quiz-app
 2. **Create a virtual environment**:
 
